@@ -29,13 +29,6 @@ DEBUG = False
 ALLOWED_HOSTS = ['itemshowcase.onrender.com', 'itemshowcase.com']
 
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'drparvvix',
-    'API_KEY': '111151757449611',
-    'API_SECRET': 'Cz9bB-1V_yrt1JjAYS4VqnHybVE'
-}
-
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -85,12 +78,10 @@ WSGI_APPLICATION = 'item_showcase.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-
 DATABASES = {
-    'default': dj_database_url.config(
-        default='sqlite:///' + str(BASE_DIR / 'db.sqlite3')
-    )
+    'default': dj_database_url.config(default=os.environ.get('DATABASE_URL'))
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
