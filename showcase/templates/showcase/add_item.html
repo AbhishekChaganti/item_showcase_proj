@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Item</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'showcase/style.css' %}">
+</head>
+<body>
+    <h2>Add New Item</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Item</button>
+    </form>
+</body>
+</html>

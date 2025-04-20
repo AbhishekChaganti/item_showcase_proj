@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item Showcase</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'showcase/style.css' %}">
+</head>
+<body>
+
+    <div class="top-bar">
+        <h1>Item Showcase</h1>
+    
+        <div class="auth-controls">
+            {% if user.is_authenticated %}
+                <p>Welcome, {{ user.username }}</p>
+                <form method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <button type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a href="{% url 'login' %}">Login</a>
+            {% endif %}
+        </div>
+    </div>
+    
+    {% if user.is_authenticated %}
+        <div style="margin: 20px 0;">
+            <a href="{% url 'add_item' %}" class="add-button">+ Add New Item</a>
+        </div>
+    {% endif %}
+
+    <div class="grid">
+        {% for item in items %}
+        <div class="card">
+            <img src="{{ item.image.url }}" alt="{{ item.name }}">
+            <h2>{{ item.name }}</h2>
+            <p>{{ item.description }}</p>
+            <p><strong>${{ item.price }}</strong></p>
+
+            {% if item.url %}
+                <p><a href="{{ item.url }}" target="_blank">Visit Link</a></p>
+            {% endif %}
+
+            {% if user == item.owner %}
+                <a href="{% url 'update_item' item.id %}">Edit</a>
+                <a href="{% url 'delete_item' item.id %}">Delete</a>
+            {% endif %}
+        </div>
+        {% endfor %}
+    </div>
+
+</body>
+</html>

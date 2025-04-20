@@ -1,0 +1,20 @@
+<!-- showcase/templates/showcase/update_item.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Item</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'showcase/style.css' %}">
+</head>
+<body>
+    <h2>Edit Item</h2>
+
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Update Item</button>
+    </form>
+
+    <a href="{% url 'index' %}">Cancel</a>
+</body>
+</html>
