@@ -27,4 +27,4 @@ urlpatterns = [
     path('', include('showcase.urls')),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', LogoutView.as_view(next_page='index'), name='logout'),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.DEFAULT_AUTO_FIELD, document_root=settings.DEFAULT_FILE_STORAGE)
