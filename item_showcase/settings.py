@@ -29,6 +29,13 @@ DEBUG = False
 ALLOWED_HOSTS = ['itemshowcase.onrender.com', 'itemshowcase.com']
 
 
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'drparvvix',
+    'API_KEY': '111151757449611',
+    'API_SECRET': 'Cz9bB-1V_yrt1JjAYS4VqnHybVE'
+}
+
+
 # Application definition
 
 INSTALLED_APPS = [
@@ -39,6 +46,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'showcase',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -124,6 +133,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 LOGIN_URL = '/accounts/login/'
 LOGIN_REDIRECT_URL = '/'
